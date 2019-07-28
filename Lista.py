@@ -1,16 +1,22 @@
+#importando librerias para manejo de consola
 import sys
 import os
+#creando una clase nodo con un dato de tipo objeto por lo cual la lista puede ingresarse cualquier valor
 class Nodo:
     def __init__(self,dato):
       self.dato = dato
       self.siguiente = None
-      
+#se crea una clase lista en la cual se definiran las funciones basicas como lo son insertar, eliminar, modificar y mostrar los elementos      
 class Lista:
+    #definiendo el constructor
+    #option es la variable que guarda la opcion elegida del menu
+    #cabezaLista es nuestra lista enlazada inicializada en null
+    #menuL es el menu que contiene las operaciones que puede realizar nuestra lista simplemente enlazada
     def __init__(self):
         option = ""
         self.cabezaLista = None
         self.menuL()
-
+    #se define el metodo agregarFinal el cual simplemente añade elementos al final de la lista
     def agregarFinal(self,nuevoDat):
         nuevoND = Nodo(nuevoDat)
         if self.cabezaLista is None:
@@ -22,7 +28,7 @@ class Lista:
             last = last.siguiente
 
         last.siguiente = nuevoND
-   
+   #creando el metodo mostrar el cual lo unico que hace es recorrer la lista e imprimir en consola cada elemento encontrado
     def mostrar(self):
         temp = self.cabezaLista
         if temp != None:
@@ -32,7 +38,7 @@ class Lista:
                 temp = temp.siguiente   
         else:
             print("Lista Vacia")     
-
+    #eliminar como su nombre lo dice elimina un metodo mediante una referencia dada por el usuario
     def eliminar(self,elementoB):
         temp = self.cabezaLista
 
@@ -57,7 +63,7 @@ class Lista:
         ant.siguiente = temp.siguiente
         temp = None    
         print("Elemento eliminado")
-
+    #modificar es el metodo que mediante una referencia solicitada busca un valor y lo modifica
     def modificar(self,elementoM):
         temp = self.cabezaLista
         encontrado =False
@@ -75,7 +81,7 @@ class Lista:
         else:
             print("Elemento no encontrado")
             return    
-
+    #menuL es el menu de opciones que ayudara a el mejor control de las operaciones de la lista simple
     def menuL(self):
         while True:
             os.system("cls")
@@ -99,21 +105,26 @@ class Lista:
                 os.system("cls")
                 sys.exit()
             else:
-                self.menuL()                   
+                self.menuL()
+    #funciones creadas para el mejor control del menu y para mejor visualizacion del codigo            
+    #insertarElemento ayuda a control de la solicitud de valores para la insercion de datos            
     def insertarElemento(self):
         print("\n Ingrese el valor a insertar: ")
         val = input()
         self.agregarFinal(val)
         print("\n Insertado correctamente")
         os.system("pause")
+    #modificarElemento ayuda a control de la modificacion de datos    
     def modificarElemento(self):
         print("\n Ingrese elemento a modificar: ")
         elmt = input()
         self.modificar(elmt)
         os.system("pause")
+    #mostrarElemento ayuda a control de la visualizacion de los datos    
     def mostrarElemento(self):
         self.mostrar()
         os.system("pause")
+    #eliminarElemento ayuda a control de la eliminacion de datos    
     def eliminarElemento(self):
         print("\n Ingrese elemento a eliminar: ")
         elmt = input()
